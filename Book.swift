@@ -1,6 +1,6 @@
 import Foundation
 
-// Book model representing a book in the library
+// Book object to outline book structure in library (Non observable object)
 struct Book: Identifiable, Codable {
     let id = UUID()
     var title: String

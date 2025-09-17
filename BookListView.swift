@@ -1,15 +1,35 @@
 import SwiftUI
 
+// Main screen view to display all books in library
 struct BookListView: View {
     @StateObject private var bookStore = BookStore()
     @State private var showingAddBook = false
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(bookStore.books) { book in
-                    BookRowView(book: book, bookStore: bookStore)
+            VStack(spacing: 0) {
+                // Search Bar
+                SearchBar(text: $bookStore.searchText)
+                    .padding(.horizontal)
+                    .padding(.top, 8)
+                
+                // Filter Toggle
+                HStack {
+                    Toggle("Show Only Available", isOn: $bookStore.showOnlyAvailable)
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                    Spacer()
                 }
+                
+                Divider()
+                
+                // Book List
+                List {
+                    ForEach(bookStore.filteredBooks) { book in
+                        BookRowView(book: book, bookStore: bookStore)
+                    }
+                }
+                .listStyle(PlainListStyle())
             }
             .navigationTitle("Library")
             .toolbar {
@@ -75,6 +95,33 @@ struct BookRowView: View {
             }
         }
         .padding(.vertical, 4)
+    }
+}
+
+struct SearchBar: View {
+    @Binding var text: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.gray)
+            
+            TextField("Search books by title or author...", text: $text)
+                .textFieldStyle(PlainTextFieldStyle())
+            
+            if !text.isEmpty {
+                Button(action: {
+                    text = ""
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                }
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(Color(.systemGray6))
+        .cornerRadius(10)
     }
 }
 

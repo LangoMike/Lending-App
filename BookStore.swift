@@ -1,9 +1,31 @@
 import Foundation
 import SwiftUI
 
-// ObservableObject to manage the library data
+// ObservableObject to manage all book data in library
 class BookStore: ObservableObject {
     @Published var books: [Book] = []
+    @Published var searchText: String = ""
+    @Published var showOnlyAvailable: Bool = false
+    
+    // Computed property for filtered books
+    var filteredBooks: [Book] {
+        var filtered = books
+        
+        // Filter by search text (title or author)
+        if !searchText.isEmpty {
+            filtered = filtered.filter { book in
+                book.title.localizedCaseInsensitiveContains(searchText) ||
+                book.author.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+        
+        // Filter by availability
+        if showOnlyAvailable {
+            filtered = filtered.filter { !$0.isBorrowed }
+        }
+        
+        return filtered
+    }
     
     // Initialize with sample books
     init() {

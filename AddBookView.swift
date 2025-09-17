@@ -1,6 +1,7 @@
 import SwiftUI
 
 // Handles adding a new book to the library
+// Displays as a form
 
 struct AddBookView: View {
     @ObservedObject var bookStore: BookStore
