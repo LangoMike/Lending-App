@@ -9,7 +9,7 @@ A simple iOS app built with SwiftUI that allows users to manage a library of boo
 - **Borrow/Return Books**: Toggle book availability with intuitive buttons
 - **Visual Status Indicator**: Color-coded status indicators (green for available, red for borrowed)
   
-# Additional Features (We can add more on thursday)
+### Additional Features (We can add more on thursday)
 - **Search Bar**: Search bar to allow for filtering by title / author
 - **Filter**: Enables users to filter books based on availability
 
