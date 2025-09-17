@@ -1,4 +1,4 @@
-# Lending App (LAB 2)
+# Lending App (CS 3714 LAB 2)
 
 A simple iOS app built with SwiftUI that allows users to manage a library of books, including borrowing and returning functionality.
 
@@ -11,7 +11,7 @@ A simple iOS app built with SwiftUI that allows users to manage a library of boo
 
 ## Project Structure
 
-- `LibraryApp.swift` - Main app entry point
+- `LendingApp.swift` - Main app entry point
 - `Book.swift` - Book data model
 - `BookStore.swift` - ObservableObject managing the library data
 - `BookListView.swift` - Main view displaying the list of books
