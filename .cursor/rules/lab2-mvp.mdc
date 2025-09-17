@@ -1,0 +1,6 @@
+---
+description: We will be creating a Lending app where people can lend various things. The main thing users need to be able to lend is books. Core “Lending” functions -Build a simple Library Management System using SwiftUI and Xcode. -This app will allow users to • View a list of available books • Add new books to the library • Borrow and return books Core Features-• View All Books• Create a list that displays each book with its title, author, and status(available/borrowed).• Use color or icon indicators for borrowed vs. available books.• Create a form (e.g., Sheet or NavigationLink) where users can enter a title and author to add a book to the library. • Borrow/Return  • For each book in the list • If available, show a "Borrow" button. • If borrowed, show a "Return" button. • Tapping the button should update the book's status immediately.
+ Hint- you do not need persistent storage at this time.
+globs:
+alwaysApply: true
+---
