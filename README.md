@@ -30,3 +30,9 @@ A simple iOS app built with SwiftUI that allows users to manage a library of boo
 - **List** and **ForEach** for displaying collections
 - **Form** for input forms
 - **Toolbar** for navigation bar buttons
+
+## TODO:
+- Create app name / logo
+- Add color + Design UI/UX to add a modern feel
+- Data storage
+
