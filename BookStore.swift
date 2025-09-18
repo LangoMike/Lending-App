@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+internal import Combine
 
 // ObservableObject to manage all book data in library
 class BookStore: ObservableObject {
