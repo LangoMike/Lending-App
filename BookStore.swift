@@ -42,6 +42,8 @@ class BookStore: ObservableObject {
     func borrowBook(_ book: Book) {
         if let index = books.firstIndex(where: { $0.id == book.id }) {
             books[index].isBorrowed = true
+            books[index].lendingDate = Date()
+            books[index].expectedReturnDate = Calendar.current.date(byAdding: .day, value: 7, to: Date())
         }
     }
     
@@ -49,7 +51,38 @@ class BookStore: ObservableObject {
     func returnBook(_ book: Book) {
         if let index = books.firstIndex(where: { $0.id == book.id }) {
             books[index].isBorrowed = false
+            books[index].lendingDate = nil
+            books[index].expectedReturnDate = nil
         }
+    }
+    
+    // Toggle wishlist status for a book
+    func toggleWishlist(_ book: Book) {
+        if let index = books.firstIndex(where: { $0.id == book.id }) {
+            books[index].isInWishlist.toggle()
+        }
+    }
+    
+    // Toggle favorite status for a book
+    func toggleFavorite(_ book: Book) {
+        if let index = books.firstIndex(where: { $0.id == book.id }) {
+            books[index].isFavorited.toggle()
+        }
+    }
+    
+    // Get all books in wishlist
+    var wishlistBooks: [Book] {
+        return books.filter { $0.isInWishlist }
+    }
+    
+    // Get all favorited books
+    var favoritedBooks: [Book] {
+        return books.filter { $0.isFavorited }
+    }
+    
+    // Get all borrowed books (for receipts)
+    var borrowedBooks: [Book] {
+        return books.filter { $0.isBorrowed }
     }
     
     // Load some sample books for demo

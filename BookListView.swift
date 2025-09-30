@@ -33,6 +33,19 @@ struct BookListView: View {
             }
             .navigationTitle("Library")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack(spacing: 16) {
+                        NavigationLink(destination: WishlistView(bookStore: bookStore)) {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.red)
+                        }
+                        
+                        NavigationLink(destination: ReceiptView(bookStore: bookStore)) {
+                            Image(systemName: "doc.text")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add Book") {
                         showingAddBook = true
@@ -66,31 +79,61 @@ struct BookRowView: View {
             
             VStack(alignment: .trailing, spacing: 8) {
                 // Status indicator with color
-                HStack {
-                    Circle()
-                        .fill(book.isBorrowed ? Color.red : Color.green)
-                        .frame(width: 8, height: 8)
+                VStack(alignment: .trailing, spacing: 4) {
+                    HStack {
+                        Circle()
+                            .fill(book.isBorrowed ? (book.isOverdue ? Color.red : Color.orange) : Color.green)
+                            .frame(width: 8, height: 8)
+                        
+                        Text(book.isBorrowed ? (book.isOverdue ? "Overdue" : "Borrowed") : "Available")
+                            .font(.caption)
+                            .foregroundColor(book.isBorrowed ? (book.isOverdue ? .red : .orange) : .green)
+                    }
                     
-                    Text(book.status)
-                        .font(.caption)
-                        .foregroundColor(book.isBorrowed ? .red : .green)
+                    // Show lending info if borrowed
+                    if book.isBorrowed {
+                        Text("Due: \(book.formattedExpectedReturnDate)")
+                            .font(.caption2)
+                            .foregroundColor(book.isOverdue ? .red : .secondary)
+                    }
                 }
                 
-                // Borrow/Return button
-                Button(action: {
-                    if book.isBorrowed {
-                        bookStore.returnBook(book)
-                    } else {
-                        bookStore.borrowBook(book)
+                // Action buttons row
+                HStack(spacing: 8) {
+                    // Wishlist button
+                    Button(action: {
+                        bookStore.toggleWishlist(book)
+                    }) {
+                        Image(systemName: book.isInWishlist ? "heart.fill" : "heart")
+                            .foregroundColor(book.isInWishlist ? .red : .gray)
+                            .font(.system(size: 16))
                     }
-                }) {
-                    Text(book.isBorrowed ? "Return" : "Borrow")
-                        .font(.caption)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(book.isBorrowed ? Color.blue : Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
+                    
+                    // Favorite button
+                    Button(action: {
+                        bookStore.toggleFavorite(book)
+                    }) {
+                        Image(systemName: book.isFavorited ? "star.fill" : "star")
+                            .foregroundColor(book.isFavorited ? .yellow : .gray)
+                            .font(.system(size: 16))
+                    }
+                    
+                    // Borrow/Return button
+                    Button(action: {
+                        if book.isBorrowed {
+                            bookStore.returnBook(book)
+                        } else {
+                            bookStore.borrowBook(book)
+                        }
+                    }) {
+                        Text(book.isBorrowed ? "Return" : "Borrow")
+                            .font(.caption)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(book.isBorrowed ? Color.blue : Color.orange)
+                            .foregroundColor(.white)
+                            .cornerRadius(6)
+                    }
                 }
             }
         }
