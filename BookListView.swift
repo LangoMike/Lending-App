@@ -99,7 +99,7 @@ struct BookRowView: View {
                 }
                 
                 // Action buttons row
-                HStack(spacing: 8) {
+                HStack(spacing: 12) {
                     // Wishlist button
                     Button(action: {
                         bookStore.toggleWishlist(book)
@@ -108,6 +108,7 @@ struct BookRowView: View {
                             .foregroundColor(book.isInWishlist ? .red : .gray)
                             .font(.system(size: 16))
                     }
+                    .buttonStyle(PlainButtonStyle())
                     
                     // Favorite button
                     Button(action: {
@@ -117,6 +118,7 @@ struct BookRowView: View {
                             .foregroundColor(book.isFavorited ? .yellow : .gray)
                             .font(.system(size: 16))
                     }
+                    .buttonStyle(PlainButtonStyle())
                     
                     // Borrow/Return button
                     Button(action: {
@@ -128,12 +130,14 @@ struct BookRowView: View {
                     }) {
                         Text(book.isBorrowed ? "Return" : "Borrow")
                             .font(.caption)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
+                            .fontWeight(.semibold)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
                             .background(book.isBorrowed ? Color.blue : Color.orange)
                             .foregroundColor(.white)
                             .cornerRadius(6)
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
         }

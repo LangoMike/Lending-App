@@ -108,15 +108,17 @@ struct WishlistRowView: View {
             
             VStack(alignment: .trailing, spacing: 8) {
                 // Action buttons
-                HStack(spacing: 8) {
+                HStack(spacing: 12) {
                     // Wishlist button
                     Button(action: {
                         bookStore.toggleWishlist(book)
                     }) {
                         Image(systemName: book.isInWishlist ? "heart.fill" : "heart")
                             .foregroundColor(book.isInWishlist ? .red : .gray)
-                            .font(.system(size: 16))
+                            .font(.system(size: 18))
+                            .frame(width: 30, height: 30)
                     }
+                    .buttonStyle(PlainButtonStyle())
                     
                     // Favorite button
                     Button(action: {
@@ -124,8 +126,10 @@ struct WishlistRowView: View {
                     }) {
                         Image(systemName: book.isFavorited ? "star.fill" : "star")
                             .foregroundColor(book.isFavorited ? .yellow : .gray)
-                            .font(.system(size: 16))
+                            .font(.system(size: 18))
+                            .frame(width: 30, height: 30)
                     }
+                    .buttonStyle(PlainButtonStyle())
                     
                     // Borrow/Return button
                     Button(action: {
@@ -137,12 +141,14 @@ struct WishlistRowView: View {
                     }) {
                         Text(book.isBorrowed ? "Return" : "Borrow")
                             .font(.caption)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
+                            .fontWeight(.semibold)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
                             .background(book.isBorrowed ? Color.blue : Color.orange)
                             .foregroundColor(.white)
                             .cornerRadius(6)
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
         }

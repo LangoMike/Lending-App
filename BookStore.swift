@@ -93,11 +93,23 @@ class BookStore: ObservableObject {
             Book(title: "To Kill a Mockingbird", author: "Harper Lee"),
             Book(title: "1984", author: "George Orwell"),
             Book(title: "Pride and Prejudice", author: "Jane Austen"),
-            Book(title: "The Catcher in the Rye", author: "J.D. Salinger")
+            Book(title: "The Catcher in the Rye", author: "J.D. Salinger"),
+            Book(title: "The Hobbit", author: "J.R.R. Tolkien"),
+            Book(title: "Harry Potter and the Sorcerer's Stone", author: "J.K. Rowling"),
+            Book(title: "The Lord of the Rings", author: "J.R.R. Tolkien"),
+            Book(title: "Dune", author: "Frank Herbert"),
+            Book(title: "The Chronicles of Narnia", author: "C.S. Lewis"),
+            Book(title: "The Hunger Games", author: "Suzanne Collins"),
+            Book(title: "The Handmaid's Tale", author: "Margaret Atwood"),
+            Book(title: "Brave New World", author: "Aldous Huxley"),
+            Book(title: "The Alchemist", author: "Paulo Coelho"),
+            Book(title: "The Kite Runner", author: "Khaled Hosseini"),
+            Book(title: "The Lightning Thief", author: "Rick Riordan"),
+            Book(title: "The Sea of Monsters", author: "Rick Riordan"),
+            Book(title: "The Titan's Curse", author: "Rick Riordan"),
+            Book(title: "The Battle of the Labyrinth", author: "Rick Riordan"),
+            Book(title: "The Last Olympian", author: "Rick Riordan")
         ]
         
-        // Make a couple books borrowed for demo
-        books[1].isBorrowed = true
-        books[3].isBorrowed = true
     }
 }
