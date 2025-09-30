@@ -1,38 +1,62 @@
-# Lending App (CS 3714 LAB 2)
+# Lending App (CS 3714 LAB 3)
 
-A simple iOS app built with SwiftUI that allows users to manage a library of books, including borrowing and returning functionality.
+A basic iOS app built with SwiftUI that allows users to manage a library of books with advanced lending features, personalization, and tracking capabilities. It comes with 20 pre-loaded books along with a form for users to add any desired books.
 
-## Features
+## Core Features
 
 - **View All Books**: Display a list of all books with title, author, and availability status
 - **Add New Books**: Add books to the library with a simple form
 - **Borrow/Return Books**: Toggle book availability with intuitive buttons
-- **Visual Status Indicator**: Color-coded status indicators (green for available, red for borrowed)
+- **Visual Status Indicators**: Color-coded status indicators (green for available, orange for borrowed, red for overdue)
   
-### Additional Features (We can add more on thursday)
-- **Search Bar**: Search bar to allow for filtering by title / author
-- **Filter**: Enables users to filter books based on availability
+## Advanced Features
+
+### Search & Filter
+- **Search Bar**: Search books by title or author with real-time filtering
+- **Availability Filter**: Toggle to show only available books
+
+### Personalization
+- **Wishlist**: Add books to your wishlist using the heart icon
+- **Favorites**: Mark books as favorites using the star icon
+- **Dedicated Wishlist View**: Browse all wishlisted and favorited books in separate tabs
+
+### Lending Management
+- **Lending Receipts**: Track all borrowed books with detailed lending information
+- **Automatic Date Tracking**: Lending date and expected return date (7 days) automatically set
+- **Overdue Detection**: Visual indicators when books are past their return date
+- **Days Remaining/Overdue**: Real-time calculation of days until due or days overdue
+- **Receipt View**: Dedicated screen showing all borrowed books with full lending details
 
 ## Project Structure
 
-- `LendingApp.swift` - Main app entry point
-- `Book.swift` - Book data model
-- `BookStore.swift` - ObservableObject managing the library data
-- `BookListView.swift` - Main view for displaying the list of books
-- `AddBookView.swift` - Form for adding new books
+- `LendingApp.swift` - Main app entry point with @main attribute
+- `Book.swift` - Book data model with properties for borrowing, wishlist, favorites, and dates
+- `BookStore.swift` - ObservableObject managing all library data and business logic
+- `BookListView.swift` - Main view displaying the book list with search and filter
+- `AddBookView.swift` - Modal form for adding new books to the library
+- `WishlistView.swift` - View for browsing wishlist and favorited books
+- `ReceiptView.swift` - View for tracking borrowed books and lending information
 
 
 ## Key SwiftUI Concepts Used
 
-- **@StateObject** and **@ObservedObject** for data management
-- **@Published** properties for reactive UI updates
-- **NavigationView** and **NavigationLink** for navigation
-- **List** and **ForEach** for displaying collections
-- **Form** for input forms
+- **@StateObject** and **@ObservedObject** for reactive data management
+- **@Published** properties for automatic UI updates
+- **NavigationView** and **NavigationLink** for multi-screen navigation
+- **List** and **ForEach** for efficient scrollable collections
+- **Form** and **TextField** for user input
 - **Toolbar** for navigation bar buttons
+- **Sheet** for modal presentations
+- **Computed Properties** for derived data (filteredBooks, formattedDates, isOverdue)
+- **Date** and **DateFormatter** for lending date management
+- **Toggle** for filter controls
+- **Button** with custom styling for actions
 
 ## TODO:
 - Create app name / logo
 - Add color + Design UI/UX to add a modern feel
-- Data storage
+- Data persistence (save/load books between app launches)
+- User profiles for multiple borrowers
+- Book covers/images
+- Add new item sections (Expand from just books)
 
